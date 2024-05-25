@@ -1,0 +1,18 @@
+[package]
+name = "r2ox"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "r2ox"
+test = false
+bench = false
+
+[dependencies]
+lazy_static = { version = "1.4.0", features = ["spin_no_std"] }
+limine = "0.2.0"
+log = "0.4.21"
+spin = "0.9.8"
+uart_16550 = "0.3.0"
+volatile = "0.2.6"
+x86_64 = "0.15.1"
