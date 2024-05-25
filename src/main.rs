@@ -1,23 +1,20 @@
 #![no_std]
 #![no_main]
 
+// extern crate alloc;
+
 use core::{fmt::Write, panic::PanicInfo};
 
 use limine::request::FramebufferRequest;
-use serial::SERIAL1;
+use r2ox::{serial::SERIAL1, vga_println};
 use x86_64::instructions::hlt;
-
-#[macro_use]
-pub mod vga;
-#[macro_use]
-pub mod serial;
-pub mod logging;
 
 static FBR: FramebufferRequest = FramebufferRequest::new();
 
 #[no_mangle]
 pub extern "C" fn start() -> ! {
-    logging::init();
+    r2ox::init();
+    vga_println!("hello");
 
     let fb = if let Some(fb) = FBR.get_response() {
         fb

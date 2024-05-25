@@ -41,9 +41,10 @@ target/limine/limine bios-install $KERNEL.iso
 echo "Running in debug mode." >&2
 qemu-system-x86_64                                                    \
     -machine q35 -cpu EPYC -M smm=off                                 \
-    -D target/log.txt -d int,guest_errors -no-reboot -no-shutdown     \
-    -serial stdio                                                     \
+    -D target/log.txt \
+    -serial file:target/stdio.txt                                          \
     -serial file:target/fb_log.txt                                    \
     -m 4G                                                             \
     -cdrom $KERNEL.iso >&2
+    #-d int,guest_errors -no-reboot -no-shutdown     \
     # -s -S \

@@ -18,12 +18,7 @@ impl Log for Logging {
                 Level::Debug => serial1_print!("\x1b[1;32mDEBUG\x1b[0m"),
                 Level::Trace => serial1_print!("\x1b[1;37mTRACE\x1b[0m"),
             }
-            serial1_print!(
-                "] {} {}: {}\n",
-                record.target(),
-                record.file().unwrap_or("<unknown>"),
-                record.args()
-            );
+            serial1_println!("] {}: {}", record.target(), record.args());
         }
     }
 

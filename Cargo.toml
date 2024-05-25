@@ -5,6 +5,13 @@ edition = "2021"
 
 [[bin]]
 name = "r2ox"
+path = "src/main.rs"
+test = false
+bench = false
+
+[lib]
+name = "r2ox"
+path = "src/lib.rs"
 test = false
 bench = false
 
