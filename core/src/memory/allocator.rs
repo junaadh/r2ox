@@ -1,4 +1,4 @@
-use alloc::vec::{self, Vec};
+use alloc::vec::Vec;
 use arrayvec::ArrayVec;
 use buddy_system_allocator::LockedHeap;
 

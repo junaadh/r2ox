@@ -1,5 +1,5 @@
 #![no_std]
-#![feature(abi_x86_interrupt, lang_items)]
+#![feature(abi_x86_interrupt, lang_items, error_in_core)]
 #![allow(internal_features)]
 
 extern crate alloc;
