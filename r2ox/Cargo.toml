@@ -1,0 +1,20 @@
+[package]
+name = "r2ox"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "r2ox"
+path = "src/main.rs"
+test = false
+bench = false
+
+[dependencies]
+libr2ox = { version = "0.1.0", path = "../core" }
+limine = "0.2.0"
+log = "0.4.21"
+spin = "0.9.8"
+x86_64 = "0.15.1"
+
+[build-dependencies]
+cc = "1.0.98"

@@ -3,7 +3,7 @@ use core::{fmt, ops::Add};
 use lazy_static::lazy_static;
 use spin::Mutex;
 
-pub const VGA_BUFFER: usize = 0xffff8000fd000000;
+pub const VGA_BUFFER: usize = 0xb8000;
 pub const VGA_WIDTH: usize = 80;
 pub const VGA_HEIGHT: usize = 25;
 

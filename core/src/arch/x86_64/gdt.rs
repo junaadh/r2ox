@@ -23,10 +23,10 @@ lazy_static! {
         };
         tss
     };
-    static ref GDT: (GlobalDescriptorTable, Selectors) = {
+    pub static ref GDT: (GlobalDescriptorTable, Selectors) = {
         let mut gdt = GlobalDescriptorTable::new();
         let code_selector = gdt.append(Descriptor::kernel_code_segment());
-        let tss_selector = gdt.append(Descriptor::tss_segment(&TSS));
+        let tss_selector = gdt.append(Descriptor::kernel_data_segment());
         (
             gdt,
             Selectors {
@@ -37,20 +37,25 @@ lazy_static! {
     };
 }
 
-struct Selectors {
+pub struct Selectors {
     code_selector: SegmentSelector,
     tss_selector: SegmentSelector,
 }
 
-pub fn init() {
-    use x86_64::instructions::{
-        segmentation::{Segment, CS},
-        tables::load_tss,
-    };
+pub fn init_boot() {
+    use x86_64::instructions::segmentation::{Segment, CS, DS, ES, FS, GS, SS};
 
     crate::arch::x86_64::gdt::GDT.0.load();
     unsafe {
         CS::set_reg(GDT.1.code_selector);
-        load_tss(GDT.1.tss_selector);
+        DS::set_reg(GDT.1.tss_selector);
+        ES::set_reg(GDT.1.tss_selector);
+        FS::set_reg(GDT.1.tss_selector);
+
+        GS::set_reg(GDT.1.tss_selector);
+
+        SS::set_reg(GDT.1.tss_selector);
     }
 }
+
+pub fn init() {}

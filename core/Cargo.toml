@@ -1,0 +1,22 @@
+[package]
+name = "libr2ox"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+test = false
+bench = false
+
+[dependencies]
+arrayvec = { version = "0.7.4", default-features = false }
+buddy_system_allocator = "0.9.1"
+lazy_static = { version = "1.4.0", features = ["spin_no_std"] }
+limine = "0.2.0"
+log = "0.4.21"
+pic8259 = "0.11.0"
+r2proc = { version = "0.1.0", path = "../r2proc" }
+spin = "0.9.8"
+uart_16550 = "0.3.0"
+volatile = "0.2.6"
+x86 = "0.52.0"
+x86_64 = { version = "0.15.1", features = ["instructions"] }
